@@ -19,11 +19,11 @@ from django.conf.urls import url, include
 from django.views.generic import TemplateView
 from .views import BaseView
 
-from blog import endpoints
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/', include(endpoints)),
+    url(r'^api/', include('blog.endpoints')),
+    url(r'^api/', include('users.endpoints')),
     url(r'^api/auth/', include('knox.urls')),
     url(r'^', BaseView.as_view(template_name='index.html')),
 ]
