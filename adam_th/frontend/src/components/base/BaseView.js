@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
-import shortid from 'shortid';
 import { Route, Switch } from 'react-router-dom';
 
 import BlogView from '../blog/BlogView';
 import AccountView from '../account/AccountView';
 import HomeView from '../home/HomeView';
+import MainMenu from './components/MainMenu';
 import NotFound from '../NotFound';
 
 const menuItems = [
 	{
 		to: '/',
-		name: 'Home'
+		component: HomeView
 	},
 	{
 		to: '/blog',
-		name: 'Blog'
+		component: BlogView
 	},
 	{
 		to: '/account',
-		name: 'Account'
+		component: AccountView
 	}
 ];
-
-const uuid = shortid.generate;
 
 export default class BaseView extends Component {
 	render() {
 		return (
-			<Switch>
-				<Route exact path="/" component={BlogView} />
-				<Route path="/blog" component={BlogView} />
-				<Route path="/account" component={AccountView} />
-				<Route component={NotFound} />
-			</Switch>
+			<React.Fragment>
+				<MainMenu />
+				<Switch>
+					{menuItems.map(item => <Route exact path={item.to} component={item.component} />)}
+					<Route component={NotFound} />
+				</Switch>
+			</React.Fragment>
 		);
 	}
 }

@@ -1,0 +1,12 @@
+.ui.grid > .row {
+	padding: 0px !important;
+}
+
+.ui.grid > .row > .column {
+	padding: 0px !important;
+}
+
+.ui.grid {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
